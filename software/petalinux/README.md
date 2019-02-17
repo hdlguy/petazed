@@ -44,6 +44,7 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
     petalinux-package --boot --force --fpga  ../../../fpga/implement/results/top.bit --fsbl images/linux/zynq_fsbl.elf --u-boot images/linux/u-boot.elf
 
 
-    BOOT.BIN contains the FSBL, U-Boot, the device tree and Linux kernel, ready to burn into the QSPI. (I think)
+    BOOT.BIN contains the FSBL, U-Boot ready to burn into the QSPI.
+    image.ub contains the device tree,  Linux kernel and minimal root filesystem.
 
 
