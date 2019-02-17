@@ -22,3 +22,28 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
             ---- Select kernel image settings.
                 ----- Select Image Storage Media.
                 ----- Select the storage device as primary flash.
+
+- Now build the bootloader
+
+    petalinux-build -c bootloader -x distclean
+
+- Now run another configu menu.
+
+    petalinux-config -c kernel
+    
+    You don't need to change anything. Just exit.
+
+- Now build the linux kernel
+
+    petalinux-build
+
+    It takes a while to run.
+
+- Now create the boot files that u-boot expects. 
+
+    petalinux-package --boot --force --fpga  ../../../fpga/implement/results/top.bit --fsbl images/linux/zynq_fsbl.elf --u-boot images/linux/u-boot.elf
+
+
+    BOOT.BIN contains the FSBL, U-Boot, the device tree and Linux kernel, ready to burn into the QSPI. (I think)
+
+
