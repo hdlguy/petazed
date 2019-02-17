@@ -23,7 +23,7 @@ source ../source/system.tcl
 generate_target {synthesis implementation} [get_files ./proj.srcs/sources_1/bd/system/system.bd]
 set_property synth_checkpoint_mode None    [get_files ./proj.srcs/sources_1/bd/system/system.bd]
 
-write_hwdef -force -verbose ./results/system.hdf
+#write_hwdef -force -verbose ./results/system.hdf
 
 # Read in the hdl source.
 read_verilog -sv  [glob ../source/top.sv]
