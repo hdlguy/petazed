@@ -1,4 +1,4 @@
- This script sets up a Vivado project with all ip references resolved.
+# This script sets up a Vivado project with all ip references resolved.
 close_project -quiet
 file delete -force proj.xpr *.os *.jou *.log proj.srcs proj.cache proj.runs
 #
