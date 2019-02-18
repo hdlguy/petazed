@@ -41,10 +41,8 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
 
 - Now create the boot files that u-boot expects. 
 
-    petalinux-package --boot --force --fpga  ../../../fpga/implement/results/top.bit --fsbl images/linux/zynq_fsbl.elf --u-boot images/linux/u-boot.elf
+    petalinux-package --boot --force --fsbl --u-boot --kernel --fpga ../../../fpga/implement/results/top.bit
 
-
-    BOOT.BIN contains the FSBL, U-Boot ready to burn into the QSPI.
-    image.ub contains the device tree,  Linux kernel and minimal root filesystem.
+    Now BOOT.BIN contains the FSBL, U-Boot, device tree, Linux kernel and minimal root filesystem.
 
 
