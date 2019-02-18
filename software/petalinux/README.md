@@ -14,14 +14,14 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
 
 - In the graphical menu make the following changes to boot from QSPI flash.
 
-    -- Select Subsystem AUTO Hardware Settings.
-        --- Select Advanced Bootable Images Storage Settings.
-            ---- Select boot image settings.
-                ----- Select Image Storage Media.
-                ----- Select boot device as primary flash.
-            ---- Select kernel image settings.
-                ----- Select Image Storage Media.
-                ----- Select the storage device as primary flash.
+    - Select Subsystem AUTO Hardware Settings.
+        - Select Advanced Bootable Images Storage Settings.
+            - Select **boot** image settings.
+                - Select Image Storage Media.
+                - Select boot device as primary flash.
+            - Select **kernel** image settings.
+                - Select Image Storage Media.
+                - Select the storage device as primary flash.
 
 - Now build the bootloader
 
@@ -52,6 +52,7 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
     - Add .elf file for the FSBL and the BOOT.BIN as the programming file.
     - Select program device and check erase, program and verify.
     - Burn QSPI.
+    - Set the jumpers for QSPI boot mode, down, up, up.
 
 
 
