@@ -46,7 +46,7 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
     Now BOOT.BIN contains the FSBL, U-Boot, device tree, Linux kernel and minimal root filesystem.
 
 - Now burn the BOOT.BIN into the QSPI flash. 
-    - Set the jumpers JP3, JP2 and JP1 to up, up, up. This puts the board into JTAG boot mode.
+    - Set the jumpers JP3, JP2 and JP1 to up, up, up. This puts the board into JTAG boot mode. (Note: the board won't boot from QSPI in this mode.)
     - Open Vivado Hardware Manager and connect to the target.
     - Add the QSPI flash memory. Its an S25FL, 3.3V, 4 bits wide.
     - Add .elf file for the FSBL and the BOOT.BIN as the programming file.
@@ -55,11 +55,11 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
     - Set the jumpers for QSPI boot mode, down, up, up.
 
 - Boot the OS
-    - Connect to the usb-uart of the board using the putty terminal emulator, screen, minicom or similar.
+    - Connect to the usb-uart of the board using a terminal emulator, putty, screen, minicom or similar.
     - Settings are 115200 baud, 8-1-none.
     - Hit the reset button and watch for text. First, u-boot starts. You can stop in u-boot by hitting any key.
     - After a timeout u-boot will start the linux kernel.  The petalinux-configure command creates the right boot command to 
-      point to the ram filesyste, etc.
+      point to the ram filesystem, etc.
 
 
 
