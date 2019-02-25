@@ -1,4 +1,4 @@
-Here we save the instructions to create a petalinux image for booting from the QSPI.
+Here we save the condensed instructions to create a petalinux image for booting from the QSPI. Everything here is taken from Xilinx UG1144.
 
 This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run on Ubuntu 18.04 LTS but Petalinux requires 16.04 LTS.)
 
