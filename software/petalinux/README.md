@@ -6,7 +6,7 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
 
     petalinux-create --force --type project --template zynq --source ~/Downloads/xilinx/zed/avnet-digilent-zedboard-v2018.3-final.bsp --name proj1
 
-- Now lets configure for the project.  This runs a "make config" style graphical menu.
+- Now lets configure the project.  This runs a "make config" style graphical menu.
 
     cd proj1
 
@@ -39,7 +39,7 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
 
     It takes a while to run.
 
-- Now create the boot files that u-boot expects. 
+- Now create the boot BOOT.BIN file that u-boot expects. 
 
     petalinux-package --boot --force --fsbl --u-boot --kernel --fpga ../../../fpga/implement/results/top.bit
 
@@ -53,6 +53,14 @@ This assumes Petalinux is installed correctly. (Warning: Xilinx FPGA tools run o
     - Select program device and check erase, program and verify.
     - Burn QSPI.
     - Set the jumpers for QSPI boot mode, down, up, up.
+
+- Boot the OS
+    - Connect to the usb-uart of the board using the putty terminal emulator, screen, minicom or similar.
+    - Settings are 115200 baud, 8-1-none.
+    - Hit the reset button and watch for text. First, u-boot starts. You can stop in u-boot by hitting any key.
+    - After a timeout u-boot will start the linux kernel.  The petalinux-configure command creates the right boot command to 
+      point to the ram filesyste, etc.
+
 
 
 
