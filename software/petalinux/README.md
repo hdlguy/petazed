@@ -98,7 +98,7 @@ Here we save the condensed instructions to create a petalinux image for booting 
 
 ### Create a petalinux project from the Zed BSP.
 
-    petalinux-create --force --type project --template zynq --source ~/Downloads/xilinx/zed/avnet-digilent-zedboard-v2018.3-final.bsp --name proj1
+    petalinux-create --force --type project --template zynq --source ~/Downloads/xilinx/zed/avnet-digilent-zedboard-v2019.1-final.bsp --name proj1
 
   You will get a new folder called proj1.
 
