@@ -96,7 +96,7 @@ These instructions will result in pure Petalinux booting only from the QSPI flas
 
 Here we save the condensed instructions to create a petalinux image for booting soley from the SD card. The BOOT.bin and linux.ub files are taken from a FAT32 partion on the sd card. The root filesystem is mounted on an ext4 partition of the sd card.
 
-### First create a petalinux project from the Zed BSP.
+### Create a petalinux project from the Zed BSP.
 
     petalinux-create --force --type project --template zynq --source ~/Downloads/xilinx/zed/avnet-digilent-zedboard-v2018.3-final.bsp --name proj1
 
@@ -176,7 +176,7 @@ This will bring up a configuration menu.  Make the following changes.
 
 #### Copy the root filesystem onto the SD card preserving file attributes and ownership.
 
-    sudo cp --recursive --preserve binary/* /media/pedro/rootfs/
+    sudo cp --recursive --preserve binary/* /media/pedro/rootfs/ ; sync
 
 ### Boot
 
