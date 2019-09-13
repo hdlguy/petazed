@@ -1,8 +1,6 @@
 # Petalinux on Zed
 
-This document describes how to boot Ubuntu Linux from the on-board QSPI flash, on the Avnet Zed Board.
-
-## Common Instructions
+This document describes how to boot Ubuntu Linux from the SD card, on the Avnet Zed Board.
 
 ### Download and install Xilinx Petalinux 2019.1. 
 
@@ -29,65 +27,72 @@ Run something like this depending on where you installed Petalinux.
     It is called "avnet-digilent-zedboard-v2019.1-final.bsp". It is about 1.2 GB. Put it somewhere it can be accessed in the next command.
 
 
-- create a petalinux project from the Zed BSP.  You will get a new folder called proj1.
+### Create a petalinux project from the Zed BSP.
 
     petalinux-create --force --type project --template zynq --source ~/Downloads/xilinx/zed/avnet-digilent-zedboard-v2019.1-final.bsp --name proj1
 
-- configure the project.  This runs a "make config" style graphical menu.
+  You will get a new folder called proj1.
+
+### Configure the project.  
+
+This runs a "make config" style graphical menu.
 
     cd proj1
 
     petalinux-config --get-hw-description=../../../fpga/implement/results/
 
-- In the graphical menu make the following changes to boot from QSPI flash.
+This will bring up a configuration menu.  Make the following changes.
 
-    - Select Subsystem AUTO Hardware Settings.
-        - Select Advanced Bootable Images Storage Settings.
-            - Select **boot** image settings.
-                - Select Image Storage Media.
-                - Select boot device as primary flash.
-            - Select **kernel** image settings.
-                - Select Image Storage Media.
-                - Select the storage device as primary flash.
+    * Under "Image Packaging Configuration" -> 
+        "Root filesystem type" -> 
+        Select "SD Card"
 
-- Now build the bootloader
+    * Under "Subsystem AUTO Hardware Settings" ->
+        "Advanced bootable images storage Settings" ->
+            "u-boot env partition settings" ->
+                "image storage media" ->
+                    Select "primary sd"
+
+    * Under "DTG Settings" -> (I don't know if we need to modify bootargs.)
+        "Kernel Bootargs" -> 
+        Un-select "generate boot args automatically" -> 
+        Enter "user set kernel bootargs" -> Paste in the following line
+            earlycon clk_ignore_unused earlyprintk root=/dev/mmcblk0p2 rw rootwait cma=1024M
+
+    * Save and exit the configuration menu. Wait for configuration to complete.
+
+### Build the bootloader
 
     petalinux-build -c bootloader -x distclean
 
-- Now run another configu menu.
+### Run another configu menu.
 
     petalinux-config -c kernel
-    
+
     You don't need to change anything. Just exit.
 
-- Now build the linux kernel
+### Build the linux kernel
 
     petalinux-build
 
     It takes a while to run.
 
-- Now create the boot BOOT.BIN file that u-boot expects. 
+### create the boot files that u-boot expects. 
 
-    petalinux-package --boot --force --fsbl --u-boot --kernel --fpga ../../../fpga/implement/results/top.bit
+    petalinux-package --force --boot --fsbl images/linux/zynq_fsbl.elf --u-boot images/linux/u-boot.elf
 
-    Now BOOT.BIN contains the FSBL, U-Boot, device tree, Linux kernel and minimal root filesystem.
+    BOOT.BIN contains the ATF, PMUFW, FSBL, U-Boot.
+    image.ub contains the device tree and Linux kernel.
 
-- Now burn the BOOT.BIN into the QSPI flash. 
-    - Set the jumpers JP3, JP2 and JP1 to up, up, up. This puts the board into JTAG boot mode. (Note: the board won't boot from QSPI in this mode.)
-    - Open Vivado Hardware Manager and connect to the target.
-    - Add the QSPI flash memory. Its an S25FL, 3.3V, 4 bits wide.
-    - Add .elf file for the FSBL and the BOOT.BIN as the programming file.
-    - Select program device and check erase, program and verify.
-    - Burn QSPI.
-    - Set the jumpers for QSPI boot mode, down, up, up.
+### Copy the boot files to the SD card.
 
-- Boot the OS
-    - Connect to the usb-uart of the board using a terminal emulator, putty, screen, minicom or similar.
-    - Settings are 115200 baud, 8-1-none.
-    - Hit the reset button and watch for text. First, u-boot starts. You can stop in u-boot by hitting any key.
-    - After a timeout u-boot will start the linux kernel.  The petalinux-configure command creates the right boot command to 
-      point to the ram filesystem, etc.
+    cp images/linux/BOOT.BIN /media/pedro/BOOT/
+    cp images/linux/image.ub /media/pedro/BOOT/
 
+    It is assumed that you already partitioned the SD card. 
+    - sudo gparted  (make sure you have the correct drive selected!)
+    - First partition called BOOT, FAT32, 512MB
+    - Second partition called rootfs, ext4, use the rest of the card.
 
 ### Root Filesystem
 
@@ -137,6 +142,16 @@ Run something like this depending on where you installed Petalinux.
     Then go back to your workstation.
 
     ssh myuser@<ip address> 
+
+- This is a good time to update the OS. This takes about 10 minutes the first time.
+
+	sudo apt update
+	sudo apt upgrade
+
+- Also there is a problem with the linux command priviledges so you probably need this.
+
+    sudo chmod u+s /bin/*
+
 
 - Configure the PL side of the Zynq with an FPGA design. This has changed with this newer Linux on Zynq+.
 
