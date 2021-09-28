@@ -22,6 +22,7 @@ open_run impl_1
 write_checkpoint     -force ./results/post_route.dcp
 write_debug_probes   -force ./results/probes.ltx
 write_hwdef -force  -file   ./results/top.hdf
+write_hw_platform -fixed -force -file   ./results/top.xsa
 report_timing_summary -file ./results/post_route_timing_summary.rpt
 report_utilization    -file ./results/post_route_utilization.rpt
 
