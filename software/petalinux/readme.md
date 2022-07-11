@@ -1,32 +1,6 @@
 # Petalinux Development Cheatsheet
-These instructions are for Petalinux 2021.1.
 
-This file contains instructions to get Petalinux running on the Ultrazed SOM installed on the Avnet IO Carrier card. Avnet does not publish a current BSP for this board so first we create a custom BSP, then build Petalinux for it.
-
-The objective is to end up with a Raspberry Pi style boot where the root filesystem is stored, non-volatile, on a SD card ext4 partition.  This kind of system is full Ubuntu Desttop Linux. Linux commands are independent excutables, not busybox. The apt package manager can be used to install applications such as git, python3, octave, apache, etc.  Software can be be checked out, edited, compiled, debugged and re-commited from an ssh shell on the Zynq board.
-
-## One Time BSP Creation
-Avnet has not released an official BSP for this board but it is easy to create.
-
-    petalinux-create --force --type project --template zynq --name bspproj
-
-Now we have to modify the system-user.dtsi device tree file. This tells the linux kernel some things about the Ethernet interface and the SD card. There is a modified version committed to this repository so just copy it over.
-
-    cp ./system-user.dtsi ./bspproj/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
-
-Now configure the bsp project.
-
-    cd bspproj/
-    petalinux-config --get-hw-description=../../../fpga/implement/results/
-
-This will bring up a configuration menu.  Make the following changes. These changes will automatically be incorporated into the Petalinux build based on the BSP.
-
-    * Under "Image Packaging Configuration" -> "Root filesystem type" -> Select "SD Card"
-
-    * Save and exit the configuration menu. Wait for configuration to complete.
-
-    cd ..
-    petalinux-package --bsp -p bspproj/ --output uzed.bsp
+These instructions are for Petalinux 2022.1.
 
 ## Petalinux Build Project
 
@@ -38,9 +12,13 @@ Configure the petalinux project with the settings we need to run Ubuntu from the
 
     cd proj1
 
-    petalinux-config --silentconfig --get-hw-description=../../../fpga/implement/results/
+    petalinux-config --get-hw-description=../../../fpga/implement/results/
 
-All the settings are made in the BSP creation so I run this with the --siilentconfig option. Run without that option if you want the GUI.
+This will bring up a configuration menu.  Make the following changes. These changes will automatically be incorporated into the Petalinux build based on the BSP.
+
+    * Under "Image Packaging Configuration" -> "Root filesystem type" -> Select "SD Card"
+
+    * Save and exit the configuration menu. Wait for configuration to complete.
 
 ### Build the bootloader
 
