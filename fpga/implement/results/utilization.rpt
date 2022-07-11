@@ -1,13 +1,14 @@
-Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
-------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2021.1 (lin64) Build 3247384 Thu Jun 10 19:36:07 MDT 2021
-| Date         : Tue Sep 28 16:30:07 2021
-| Host         : WD-SN850 running 64-bit Ubuntu 20.04.3 LTS
-| Command      : report_utilization -file ./results/post_route_utilization.rpt
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.1.1 (lin64) Build 3557992 Fri Jun  3 09:56:20 MDT 2022
+| Date         : Mon Jul 11 16:20:13 2022
+| Host         : WD-SN850 running 64-bit Ubuntu 20.04.4 LTS
+| Command      : report_utilization -file ./results/utilization.rpt
 | Design       : top
-| Device       : 7z020clg484-1
+| Device       : xc7z020clg400-1
+| Speed File   : -1
 | Design State : Routed
-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 
 Utilization Design Information
 
@@ -31,8 +32,8 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs                 | 1471 |     0 |          0 |     53200 |  2.77 |
-|   LUT as Logic             | 1230 |     0 |          0 |     53200 |  2.31 |
+| Slice LUTs                 | 1473 |     0 |          0 |     53200 |  2.77 |
+|   LUT as Logic             | 1232 |     0 |          0 |     53200 |  2.32 |
 |   LUT as Memory            |  241 |     0 |          0 |     17400 |  1.39 |
 |     LUT as Distributed RAM |   96 |     0 |            |           |       |
 |     LUT as Shift Register  |  145 |     0 |            |           |       |
@@ -69,13 +70,13 @@ Table of Contents
 +--------------------------------------------+------+-------+------------+-----------+-------+
 |                  Site Type                 | Used | Fixed | Prohibited | Available | Util% |
 +--------------------------------------------+------+-------+------------+-----------+-------+
-| Slice                                      |  467 |     0 |          0 |     13300 |  3.51 |
-|   SLICEL                                   |  291 |     0 |            |           |       |
-|   SLICEM                                   |  176 |     0 |            |           |       |
-| LUT as Logic                               | 1230 |     0 |          0 |     53200 |  2.31 |
+| Slice                                      |  470 |     0 |          0 |     13300 |  3.53 |
+|   SLICEL                                   |  289 |     0 |            |           |       |
+|   SLICEM                                   |  181 |     0 |            |           |       |
+| LUT as Logic                               | 1232 |     0 |          0 |     53200 |  2.32 |
 |   using O5 output only                     |    1 |       |            |           |       |
-|   using O6 output only                     |  946 |       |            |           |       |
-|   using O5 and O6                          |  283 |       |            |           |       |
+|   using O6 output only                     |  950 |       |            |           |       |
+|   using O5 and O6                          |  281 |       |            |           |       |
 | LUT as Memory                              |  241 |     0 |          0 |     17400 |  1.39 |
 |   LUT as Distributed RAM                   |   96 |     0 |            |           |       |
 |     using O5 output only                   |    0 |       |            |           |       |
@@ -86,10 +87,10 @@ Table of Contents
 |     using O6 output only                   |  144 |       |            |           |       |
 |     using O5 and O6                        |    0 |       |            |           |       |
 | Slice Registers                            | 1153 |     0 |          0 |    106400 |  1.08 |
-|   Register driven from within the Slice    |  830 |       |            |           |       |
-|   Register driven from outside the Slice   |  323 |       |            |           |       |
-|     LUT in front of the register is unused |  131 |       |            |           |       |
-|     LUT in front of the register is used   |  192 |       |            |           |       |
+|   Register driven from within the Slice    |  828 |       |            |           |       |
+|   Register driven from outside the Slice   |  325 |       |            |           |       |
+|     LUT in front of the register is unused |  130 |       |            |           |       |
+|     LUT in front of the register is used   |  195 |       |            |           |       |
 | Unique Control Sets                        |  112 |       |          0 |     13300 |  0.84 |
 +--------------------------------------------+------+-------+------------+-----------+-------+
 * * Note: Available Control Sets calculated as Slice * 1, Review the Control Sets Report for more information regarding control sets.
@@ -125,7 +126,7 @@ Table of Contents
 +-----------------------------+------+-------+------------+-----------+--------+
 |          Site Type          | Used | Fixed | Prohibited | Available |  Util% |
 +-----------------------------+------+-------+------------+-----------+--------+
-| Bonded IOB                  |    0 |     0 |          0 |       200 |   0.00 |
+| Bonded IOB                  |    0 |     0 |          0 |       125 |   0.00 |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |   0.00 |
 | Bonded IOPADs               |  130 |   130 |          0 |       130 | 100.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         4 |   0.00 |
@@ -133,12 +134,12 @@ Table of Contents
 | OUT_FIFO                    |    0 |     0 |          0 |        16 |   0.00 |
 | IN_FIFO                     |    0 |     0 |          0 |        16 |   0.00 |
 | IDELAYCTRL                  |    0 |     0 |          0 |         4 |   0.00 |
-| IBUFDS                      |    0 |     0 |          0 |       192 |   0.00 |
+| IBUFDS                      |    0 |     0 |          0 |       121 |   0.00 |
 | PHASER_OUT/PHASER_OUT_PHY   |    0 |     0 |          0 |        16 |   0.00 |
 | PHASER_IN/PHASER_IN_PHY     |    0 |     0 |          0 |        16 |   0.00 |
 | IDELAYE2/IDELAYE2_FINEDELAY |    0 |     0 |          0 |       200 |   0.00 |
-| ILOGIC                      |    0 |     0 |          0 |       200 |   0.00 |
-| OLOGIC                      |    0 |     0 |          0 |       200 |   0.00 |
+| ILOGIC                      |    0 |     0 |          0 |       125 |   0.00 |
+| OLOGIC                      |    0 |     0 |          0 |       125 |   0.00 |
 +-----------------------------+------+-------+------------+-----------+--------+
 
 
