@@ -89,7 +89,11 @@ exit
     sudo cp --recursive --preserve ./debianMinimalRootFS/* /media/pedro/rootfs/; sync
 
 
-############### Post Boot Stuff ##############################3
+## Post Boot Stuff
+
+sudo hostnamectl set-hostname zedboard
+hostnamectl
+
 
 ## Run-time FPGA Configuration
 
