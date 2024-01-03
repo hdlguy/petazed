@@ -40,22 +40,22 @@ cd ..
 
 ## Installing a Debian root filesystem using debootstrap
 
-    Then follow instructions here to confgure the root file system: https://akhileshmoghe.github.io/_post/linux/debian_minimal_rootfs
+Then follow instructions here to confgure the root file system: https://akhileshmoghe.github.io/_post/linux/debian_minimal_rootfs
 
-    Here are the most important commands listed for convenience. 
+Here are the most important commands listed for convenience. 
 
-sudo apt install qemu-user-static
-sudo apt install debootstrap
+    sudo apt install qemu-user-static
+    sudo apt install debootstrap
 
-sudo debootstrap --arch=armhf --foreign buster debianMinimalRootFS
-sudo cp /usr/bin/qemu-arm-static ./debianMinimalRootFS/usr/bin/
-sudo cp /etc/resolv.conf ./debianMinimalRootFS/etc/resolv.conf
-sudo chroot ./debianMinimalRootFS
-export LANG=C
+    sudo debootstrap --arch=armhf --foreign buster debianMinimalRootFS
+    sudo cp /usr/bin/qemu-arm-static ./debianMinimalRootFS/usr/bin/
+    sudo cp /etc/resolv.conf ./debianMinimalRootFS/etc/resolv.conf
+    sudo chroot ./debianMinimalRootFS
+    export LANG=C
 
-/debootstrap/debootstrap --second-stage
+    /debootstrap/debootstrap --second-stage
 
-    Add these sources to /etc/apt/sources.list
+Add these sources to /etc/apt/sources.list
 
     deb http://deb.debian.org/debian buster main contrib non-free
     deb-src http://deb.debian.org/debian buster main contrib non-free
@@ -64,7 +64,7 @@ export LANG=C
     deb http://deb.debian.org/debian buster-updates main contrib non-free
     deb-src http://deb.debian.org/debian buster-updates main contrib non-free
 
-    Do some more file system configuration.
+Do some more file system configuration.
 
 apt update
 apt install locales dialog
