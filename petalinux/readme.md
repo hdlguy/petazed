@@ -66,33 +66,33 @@ Add these sources to /etc/apt/sources.list
 
 Do some more file system configuration.
 
-apt update
-apt install locales dialog
-dpkg-reconfigure locales
-apt install vim openssh-server ntpdate sudo ifupdown net-tools udev iputils-ping wget dosfstools unzip binutils libatomic1
-passwd
-adduser myuser
-usermod -aG sudo myuser
-usermod --shell /bin/bash <user-name>
+    apt update
+    apt install locales dialog
+    dpkg-reconfigure locales
+    apt install vim openssh-server ntpdate sudo ifupdown net-tools udev iputils-ping wget dosfstools unzip binutils libatomic1
+    passwd
+    adduser myuser
+    usermod -aG sudo myuser
+    usermod --shell /bin/bash <user-name>
 
-    Add to /etc/network/interfaces
+Add to /etc/network/interfaces
 
     auto eth0
     iface eth0 inet dhcp
 
-    Exit chroot.
+Exit chroot.
 
-exit
+    exit
 
-    Write filesystem to SD card.
+Write filesystem to SD card.
 
     sudo cp --recursive --preserve ./debianMinimalRootFS/* /media/pedro/rootfs/; sync
 
 
 ## Post Boot Stuff
 
-sudo hostnamectl set-hostname zedboard
-hostnamectl
+    sudo hostnamectl set-hostname zedboard
+    hostnamectl
 
 
 ## Run-time FPGA Configuration
@@ -116,10 +116,10 @@ This last command should make the "Done" LED go green indicating success.
 
 ## Useful Linux commands
 
-apt install man
-apt install subversion
+    apt install man
+    apt install subversion
 
-adduser myuser
-usermod -aG sudo myuser
+    adduser myuser
+    usermod -aG sudo myuser
 
-passwd
+    passwd
