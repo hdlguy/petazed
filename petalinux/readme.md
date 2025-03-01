@@ -55,7 +55,7 @@ Here are the most important commands listed for convenience.
     sudo apt install debootstrap
 
     sudo debootstrap --arch=armhf --foreign buster debianMinimalRootFS
-    sudo cp /usr/bin/qemu-aarch64-static ./debianMinimalRootFS/usr/bin/
+    sudo cp /usr/bin/qemu-arm-static ./debianMinimalRootFS/usr/bin/
     sudo cp /etc/resolv.conf ./debianMinimalRootFS/etc/resolv.conf
     sudo chroot ./debianMinimalRootFS
     export LANG=C
