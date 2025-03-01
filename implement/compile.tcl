@@ -21,7 +21,7 @@ wait_on_run impl_1
 open_run impl_1
 write_debug_probes  -force                  ./results/top.ltx
 write_hwdef -force  -file                   ./results/top.hdf
-write_hw_platform -fixed -force -file       ./results/top.xsa
+write_hw_platform -include_bit -fixed -force -file ./results/top.xsa
 report_timing_summary -file                 ./results/timing.rpt
 report_utilization    -file                 ./results/utilization.rpt
 report_io             -file                 ./results/io.rpt
