@@ -37,7 +37,8 @@ petalinux-build
 
 ### Package 
 
-petalinux-package --force --boot --fsbl --fpga --u-boot
+#petalinux-package --force --boot --fsbl --fpga --u-boot --kernel --offset 0x1080000 
+petalinux-package boot --force --fsbl --u-boot --fpga --kernel --offset 0x1080000 --format BIN
 
 ### Copy to SD Card
 
@@ -70,8 +71,8 @@ Do some more file system configuration.
     dpkg-reconfigure locales
     apt install vim openssh-server ntpdate sudo ifupdown net-tools udev iputils-ping wget dosfstools unzip binutils libatomic1
     passwd
-    adduser myuser
-    usermod -aG sudo myuser
+    adduser <user-name>
+    usermod -aG sudo <user-name>
     usermod --shell /bin/bash <user-name>
 
     Add to /etc/network/interfaces
