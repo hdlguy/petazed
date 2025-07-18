@@ -1,8 +1,15 @@
-# Petalinux (2024.2) on Zynq
+# Petalinux (2025.1) on Zynq Microzed
 
 ## Petalinux Build instructions
 
-    * open https://petalinux.xilinx.com/ in a web browser. this makes sure we have a good connection to the yocto downloads.
+### Download and uncompress sstate artifacts
+I find that the compile time download from petalinux.xilinx.com is unreliable. The trick is to have those files local. Then, in petalinux-config we point to the local files.
+
+https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
+
+    - Downloads         (TAR/GZIP - 61.27 GB)
+    - sstate_aarch64    (TAR/GZIP - 33.95 GB)
+
 
 ### Convert XSA to SDT
 rm -rf ./sdt/; /tools/Xilinx/2025.1/Vitis/bin/sdtgen -eval "set_dt_param -dir ./sdt -xsa ../implement/results/top.xsa -user_dts ./system-user.dtsi; generate_sdt;"
@@ -15,7 +22,10 @@ cd proj1
 petalinux-config --get-hw-description=../sdt/
 
     * Image Packaging Configuration -> Root Filesystem Type -> EXT4                         (if you want a persistent rootfs)
-    * DTG Settings -> Kernel Bootargs -> manual bootargs -> console=ttyPS0,115200 earlycon root=/dev/mmcblk0p2 rw rootwait
+    * DTG Settings -> Kernel Bootargs -> manual bootargs -> console=ttyPS0,115200 earlycon root=/dev/mmcblk0p2 rw rootwait clk_ignore_unused
+
+    * Yocto Settings -> Local sstate feeds settings -> local sstate feeds url ->    file://~/Downloads/xilinx/petalinux/sstate_arm_download_2025_1
+    * Yocto Settings -> Add pre-mirror url ->                                       file://~/Downloads/xilinx/petalinux/mirror_download_2025_1/downloads/
 
     * save and exit
 
@@ -28,18 +38,15 @@ petalinux-config -c kernel --silentconfig
 ### Build
 petalinux-build
 
-    * NOTE: frequently petalinux-build generates error messages. Just rerun the previous three commands to resolve that. (Who knows why?)
-
 ### Package 
+petalinux-package boot --force --u-boot --fpga
 
-#petalinux-package --force --boot --fsbl --fpga --u-boot --kernel --offset 0x1080000 
-petalinux-package boot --force --fsbl --u-boot --fpga --kernel --offset 0x1080000 --format BIN
+    * Use this to just update the bitfile.
+
+petalinux-package boot --force --u-boot --fpga ../../implement/results/top.bit
 
 ### Copy to SD Card
-
 cp images/linux/BOOT.BIN /media/pedro/BOOT/; cp images/linux/image.ub /media/pedro/BOOT/; cp images/linux/boot.scr /media/pedro/BOOT/; sync
-
-cd ..
 
 
 ## Installing a Debian root filesystem using debootstrap
@@ -50,7 +57,7 @@ Here are the most important commands listed for convenience.
     sudo apt install qemu-user-static
     sudo apt install debootstrap
 
-    sudo debootstrap --arch=armhf --foreign buster debianMinimalRootFS
+    sudo debootstrap --arch=armhf --foreign bookworm debianMinimalRootFS
     sudo cp /usr/bin/qemu-arm-static ./debianMinimalRootFS/usr/bin/
     sudo cp /etc/resolv.conf ./debianMinimalRootFS/etc/resolv.conf
     sudo chroot ./debianMinimalRootFS
@@ -58,6 +65,15 @@ Here are the most important commands listed for convenience.
 
     /debootstrap/debootstrap --second-stage
 
+Add these sources to /etc/apt/sources.list
+
+    #deb http://deb.debian.org/debian bookworm main contrib non-free
+    #deb-src http://deb.debian.org/debian bookworm main contrib non-free
+    #deb http://security.debian.org/ bookworm/updates main contrib non-free
+    #deb-src http://security.debian.org/ bookworm/updates main contrib non-free
+    #deb http://deb.debian.org/debian bookworm-updates main contrib non-free
+    #deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free
+    deb https://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 
 Do some more file system configuration.
 
