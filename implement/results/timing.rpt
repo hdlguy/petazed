@@ -1,7 +1,7 @@
-Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-| Date         : Sun Mar  2 11:32:28 2025
+| Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
+| Date         : Thu Jul 17 17:06:52 2025
 | Host         : WD850X2TB running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_timing_summary -file ./results/timing.rpt
 | Design       : top
@@ -138,7 +138,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      3.385        0.000                      0                 4439        0.030        0.000                      0                 4439        3.750        0.000                       0                  1563  
+      2.682        0.000                      0                 4453        0.041        0.000                      0                 4453        3.750        0.000                       0                  1579  
 
 
 All user specified timing constraints are met.
@@ -161,7 +161,7 @@ clk_fpga_0  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-clk_fpga_0          3.385        0.000                      0                 4439        0.030        0.000                      0                 4439        3.750        0.000                       0                  1563  
+clk_fpga_0          2.682        0.000                      0                 4453        0.041        0.000                      0                 4453        3.750        0.000                       0                  1579  
 
 
 ------------------------------------------------------------------------------------------------
@@ -192,15 +192,15 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  clk_fpga_0
   To Clock:  clk_fpga_0
 
-Setup :            0  Failing Endpoints,  Worst Slack        3.385ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.030ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        2.682ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.041ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        3.750ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             3.385ns  (required time - arrival time)
+Slack (MET) :             2.682ns  (required time - arrival time)
   Source:                 system_i/processing_system7_0/inst/PS7_i/MAXIGP0ACLK
                             (rising edge-triggered cell PS7 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            <hidden>
@@ -208,10 +208,10 @@ Slack (MET) :             3.385ns  (required time - arrival time)
   Path Group:             clk_fpga_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
-  Data Path Delay:        5.941ns  (logic 2.078ns (34.978%)  route 3.863ns (65.022%))
+  Data Path Delay:        6.606ns  (logic 2.078ns (31.457%)  route 4.528ns (68.543%))
   Logic Levels:           4  (LUT4=2 LUT6=2)
-  Clock Path Skew:        -0.148ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    2.654ns = ( 12.654 - 10.000 ) 
+  Clock Path Skew:        -0.150ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.652ns = ( 12.652 - 10.000 ) 
     Source Clock Delay      (SCD):    3.031ns
     Clock Pessimism Removal (CPR):    0.229ns
   Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -227,21 +227,21 @@ Slack (MET) :             3.385ns  (required time - arrival time)
     PS7_X0Y0             PS7                          0.000     0.000 r  system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           1.193     1.193    system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1563, routed)        1.737     3.031    system_i/processing_system7_0/inst/FCLK_CLK0
+                         net (fo=1579, routed)        1.737     3.031    system_i/processing_system7_0/inst/FCLK_CLK0
     PS7_X0Y0             PS7                                          r  system_i/processing_system7_0/inst/PS7_i/MAXIGP0ACLK
   -------------------------------------------------------------------    -------------------
     PS7_X0Y0             PS7 (Prop_ps7_MAXIGP0ACLK_MAXIGP0RREADY)
                                                       1.357     4.388 r  system_i/processing_system7_0/inst/PS7_i/MAXIGP0RREADY
-                         net (fo=19, routed)          1.665     6.053    <hidden>
-    SLICE_X39Y85         LUT6 (Prop_lut6_I3_O)        0.124     6.177 f  <hidden>
-                         net (fo=1, routed)           0.296     6.473    <hidden>
-    SLICE_X39Y87         LUT6 (Prop_lut6_I1_O)        0.124     6.597 f  <hidden>
-                         net (fo=9, routed)           0.613     7.210    <hidden>
-    SLICE_X42Y86         LUT4 (Prop_lut4_I3_O)        0.116     7.326 r  <hidden>
-                         net (fo=17, routed)          0.701     8.027    <hidden>
-    SLICE_X40Y86         LUT4 (Prop_lut4_I1_O)        0.357     8.384 r  <hidden>
-                         net (fo=8, routed)           0.588     8.972    <hidden>
-    SLICE_X38Y87         FDRE                                         r  <hidden>
+                         net (fo=19, routed)          1.979     6.367    <hidden>
+    SLICE_X36Y81         LUT6 (Prop_lut6_I3_O)        0.124     6.491 f  <hidden>
+                         net (fo=1, routed)           0.592     7.083    <hidden>
+    SLICE_X34Y82         LUT6 (Prop_lut6_I1_O)        0.124     7.207 f  <hidden>
+                         net (fo=9, routed)           0.747     7.954    <hidden>
+    SLICE_X41Y83         LUT4 (Prop_lut4_I3_O)        0.118     8.072 r  <hidden>
+                         net (fo=17, routed)          0.646     8.718    <hidden>
+    SLICE_X43Y84         LUT4 (Prop_lut4_I1_O)        0.355     9.073 r  <hidden>
+                         net (fo=8, routed)           0.563     9.637    <hidden>
+    SLICE_X40Y84         FDRE                                         r  <hidden>
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_fpga_0 rise edge)
@@ -249,16 +249,16 @@ Slack (MET) :             3.385ns  (required time - arrival time)
     PS7_X0Y0             PS7                          0.000    10.000 r  system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           1.088    11.088    system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1563, routed)        1.475    12.654    <hidden>
-    SLICE_X38Y87         FDRE                                         r  <hidden>
-                         clock pessimism              0.229    12.883    
-                         clock uncertainty           -0.154    12.729    
-    SLICE_X38Y87         FDRE (Setup_fdre_C_CE)      -0.372    12.357    <hidden>
+                         net (fo=1579, routed)        1.473    12.652    <hidden>
+    SLICE_X40Y84         FDRE                                         r  <hidden>
+                         clock pessimism              0.229    12.881    
+                         clock uncertainty           -0.154    12.727    
+    SLICE_X40Y84         FDRE (Setup_fdre_C_CE)      -0.408    12.319    <hidden>
   -------------------------------------------------------------------
-                         required time                         12.357    
-                         arrival time                          -8.972    
+                         required time                         12.319    
+                         arrival time                          -9.637    
   -------------------------------------------------------------------
-                         slack                                  3.385    
+                         slack                                  2.682    
 
 
 
@@ -266,20 +266,20 @@ Slack (MET) :             3.385ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.030ns  (arrival time - required time)
-  Source:                 <hidden>
+Slack (MET) :             0.041ns  (arrival time - required time)
+  Source:                 system_i/axi_bram_ctrl_0/U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/GEN_WRDATA[18].bram_wrdata_int_reg[18]/C
                             (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            <hidden>
-                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+                            (rising edge-triggered cell RAMB36E1 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_fpga_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
-  Data Path Delay:        0.334ns  (logic 0.164ns (49.071%)  route 0.170ns (50.929%))
+  Data Path Delay:        0.394ns  (logic 0.141ns (35.781%)  route 0.253ns (64.219%))
   Logic Levels:           0  
-  Clock Path Skew:        0.180ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.192ns
-    Source Clock Delay      (SCD):    0.977ns
-    Clock Pessimism Removal (CPR):    0.035ns
+  Clock Path Skew:        0.057ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.231ns
+    Source Clock Delay      (SCD):    0.893ns
+    Clock Pessimism Removal (CPR):    0.281ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -288,12 +288,12 @@ Slack (MET) :             0.030ns  (arrival time - required time)
     PS7_X0Y0             PS7                          0.000     0.000 r  system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           0.310     0.310    system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1563, routed)        0.641     0.977    <hidden>
-    SLICE_X32Y101        FDRE                                         r  <hidden>
+                         net (fo=1579, routed)        0.557     0.893    system_i/axi_bram_ctrl_0/U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/s_axi_aclk
+    SLICE_X33Y92         FDRE                                         r  system_i/axi_bram_ctrl_0/U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/GEN_WRDATA[18].bram_wrdata_int_reg[18]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X32Y101        FDRE (Prop_fdre_C_Q)         0.164     1.141 r  <hidden>
-                         net (fo=1, routed)           0.170     1.311    <hidden>
-    SLICE_X34Y99         RAMD32                                       r  <hidden>
+    SLICE_X33Y92         FDRE (Prop_fdre_C_Q)         0.141     1.034 r  system_i/axi_bram_ctrl_0/U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/GEN_WRDATA[18].bram_wrdata_int_reg[18]/Q
+                         net (fo=1, routed)           0.253     1.287    <hidden>
+    RAMB36_X2Y17         RAMB36E1                                     r  <hidden>
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_fpga_0 rise edge)
@@ -301,16 +301,16 @@ Slack (MET) :             0.030ns  (arrival time - required time)
     PS7_X0Y0             PS7                          0.000     0.000 r  system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           0.337     0.337    system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1563, routed)        0.826     1.192    <hidden>
-    SLICE_X34Y99         RAMD32                                       r  <hidden>
-                         clock pessimism             -0.035     1.157    
-    SLICE_X34Y99         RAMD32 (Hold_ramd32_CLK_I)
-                                                      0.124     1.281    <hidden>
+                         net (fo=1579, routed)        0.865     1.231    <hidden>
+    RAMB36_X2Y17         RAMB36E1                                     r  <hidden>
+                         clock pessimism             -0.281     0.950    
+    RAMB36_X2Y17         RAMB36E1 (Hold_ramb36e1_CLKARDCLK_DIADI[18])
+                                                      0.296     1.246    <hidden>
   -------------------------------------------------------------------
-                         required time                         -1.281    
-                         arrival time                           1.311    
+                         required time                         -1.246    
+                         arrival time                           1.287    
   -------------------------------------------------------------------
-                         slack                                  0.030    
+                         slack                                  0.041    
 
 
 
@@ -324,9 +324,9 @@ Period(ns):         10.000
 Sources:            { system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0] }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.576         10.000      7.424      RAMB36_X2Y19  <hidden>
-Low Pulse Width   Slow    RAMD32/CLK          n/a            1.250         5.000       3.750      SLICE_X42Y89  <hidden>
-High Pulse Width  Slow    RAMD32/CLK          n/a            1.250         5.000       3.750      SLICE_X42Y89  <hidden>
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.576         10.000      7.424      RAMB36_X2Y17  <hidden>
+Low Pulse Width   Slow    RAMD32/CLK          n/a            1.250         5.000       3.750      SLICE_X42Y87  <hidden>
+High Pulse Width  Slow    RAMD32/CLK          n/a            1.250         5.000       3.750      SLICE_X42Y87  <hidden>
 
 
 

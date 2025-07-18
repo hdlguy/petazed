@@ -4,33 +4,28 @@
 
     * open https://petalinux.xilinx.com/ in a web browser. this makes sure we have a good connection to the yocto downloads.
 
-### Convert the vivado .xsa file to the system device tree files that Petalinux 2024.x wants.
-
-/tools/Xilinx/Vitis/2024.2/bin/xsct ./gensdt.tcl
+### Convert XSA to SDT
+rm -rf ./sdt/; /tools/Xilinx/2025.1/Vitis/bin/sdtgen -eval "set_dt_param -dir ./sdt -xsa ../implement/results/top.xsa -user_dts ./system-user.dtsi; generate_sdt;"
 
 ### Create Petalinux project
-
 petalinux-create project --template zynq --name proj1
-
-### configure project from hardware
-
 cd proj1
 
+### configure project from hardware
 petalinux-config --get-hw-description=../sdt/
 
     * Image Packaging Configuration -> Root Filesystem Type -> EXT4                         (if you want a persistent rootfs)
+    * DTG Settings -> Kernel Bootargs -> manual bootargs -> console=ttyPS0,115200 earlycon root=/dev/mmcblk0p2 rw rootwait
+
     * save and exit
 
 ### Build the bootloader
-
 petalinux-build -c bootloader -x distclean
 
 ### Configure the kernel
-
 petalinux-config -c kernel --silentconfig
 
 ### Build
-
 petalinux-build
 
     * NOTE: frequently petalinux-build generates error messages. Just rerun the previous three commands to resolve that. (Who knows why?)
