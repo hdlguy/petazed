@@ -1,4 +1,6 @@
 / {
+	model = "Zynq Zed Development Board";
+	compatible = "xlnx,zynq-zed", "xlnx,zynq-7000";
 };
 
 &sdhci0 {
