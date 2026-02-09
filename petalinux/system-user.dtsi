@@ -1,0 +1,15 @@
+/ {
+	model = "Zynq Zed Development Board";
+	compatible = "xlnx,zynq-zed", "xlnx,zynq-7000";
+};
+
+&sdhci0 {
+    disable-wp;
+    no-1-8-v;
+};
+
+&gem0 {
+    status = "okay";
+    local-mac-address = [00 0a 35 00 02 90];
+};
+
